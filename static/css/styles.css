@@ -1,0 +1,184 @@
+/* static/css/styles.css */
+
+/* 기본 리셋: 모든 엘리먼트의 마진, 패딩 제거 및 박스 사이징 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* 전체 바디 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 헤더와 푸터 스타일: 배경색과 텍스트 색상 지정 */
+header {
+    background-color: #ccc;
+    color: black;
+    padding: 20px;
+    text-align: left;
+}
+
+footer {
+    background-color: #205375;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* 푸터 내 링크 스타일: 흰색 텍스트와 밑줄 없음 */
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 콘텐츠 영역 패딩 */
+.content {
+    padding: 10px;
+    flex: 1;
+}
+
+/* 검색 바 스타일 */
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 15px; /* 모서리를 둥글게 설정 */
+    padding: 5px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    transition: border-color 0.3s;
+}
+
+/* 입력창이 포커스될 때 테두리 색상을 오렌지색으로 변경 */
+.search-bar:focus-within {
+    border-color: orange;
+}
+
+/* 검색 바 내 아이콘 스타일: 크기, 반투명도, 커서 및 호버 효과 */
+.search-bar img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.search-bar img:hover {
+    opacity: 1;
+}
+
+/* 검색 입력창 스타일: 확장되어 공간 채움 */
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+/* 로딩 GIF 영역 스타일 */
+#loading {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* hidden 클래스가 적용되면 요소를 숨김 */
+.hidden {
+    display: none;
+}
+
+/* 검색 결과 영역: 결과 카드들을 수평 스크롤로 표시 */
+#results {
+    display: flex;
+    overflow-x: scroll;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* 개별 아티스트 카드 스타일 */
+.artist-card {
+    background-color: #205375;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+    height: 350px;
+    font-size: 25px;
+    flex-shrink: 0;
+    cursor: pointer;
+    overflow-y: visible;
+    transition: background-color 0.3s;
+}
+
+/* 카드 호버 시 배경색 변경 */
+.artist-card:hover {
+    background-color: #112B3C;
+}
+
+/* 선택된 카드의 배경색 유지 */
+.artist-card.selected {
+    background-color: #112B3C;
+}
+
+/* 카드 내 이미지 스타일: 원형, 테두리 및 크기 지정 */
+.artist-card img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 5px solid white;
+    object-fit: cover;
+}
+
+/* 아티스트 상세 정보 영역 스타일 */
+#artist-details {
+    margin-top: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer img {
+  width: 15px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.no-results {
+    color: black;
+    background-color: #ccc;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    width: 35%;
+    margin: 0 auto;
+  }
+
+.artist-name{
+    font-size: 30px;
+    text-align: center;
+}
+
+.artist-nationality{
+    font-size: 25px;
+    text-align: center;
+}
+
+#clear-icon {
+    width: 15px;
+    height: 15px;
+}
+

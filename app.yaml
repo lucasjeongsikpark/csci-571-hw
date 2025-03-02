@@ -1,0 +1,4 @@
+# app.yaml
+# GCP에서 실행될 Python 3.9 런타임 설정 및 엔트리포인트를 지정합니다.
+runtime: python39
+entrypoint: gunicorn -b :$PORT app:app
