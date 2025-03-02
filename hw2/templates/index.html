@@ -3,31 +3,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- 페이지 제목 -->
+    <!-- Page title -->
     <title>Artist Search</title>
-    <!-- CSS 파일 링크 -->
+    <!-- CSS file link -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
   </head>
   <body>
-    <!-- 페이지 헤더: 사이트 제목 표시 -->
+    <!-- Page header: displays site title -->
     <header>
       <h2>Artist Search</h2>
     </header>
 
-    <!-- 페이지 콘텐츠 영역 -->
+    <!-- Page content area -->
     <div class="content">
-      <!-- 검색 바: 아이콘과 입력창 포함 -->
+      <!-- Search bar: includes icon and input field -->
       <div class="search-bar">
-        <!-- 검색 아이콘 -->
+        <!-- Search icon -->
         <img
           src="{{ url_for('static', filename='images/search_icon.png') }}"
           alt="Search Icon"
           id="search-icon"
         />
-        <!-- 아티스트 이름 입력창; placeholder와 required 속성 포함 -->
+        <!-- Artist name input field; includes placeholder and required attribute -->
         <input
           type="text"
           id="search-input"
@@ -35,27 +35,27 @@
           autocomplete="off"
           required
         />
-        <!-- 클리어(입력 삭제) 아이콘 -->
+        <!-- Clear icon -->
         <img
           src="{{ url_for('static', filename='images/clear_icon.png') }}"
           alt="Clear Icon"
           id="clear-icon"
         />
       </div>
-      <!-- 검색 결과가 표시될 영역 -->
+      <!-- Area where search results will be displayed -->
       <div id="results"></div>
-      <!-- AJAX 요청 시 로딩 중을 표시할 로딩 GIF 영역 -->
+      <!-- Loading GIF area to display loading status during AJAX request -->
       <div id="loading" class="hidden">
         <img
           src="{{ url_for('static', filename='images/loading.gif') }}"
           alt="Loading"
         />
       </div>
-      <!-- 선택된 아티스트의 상세 정보가 표시될 영역 -->
+      <!-- Area where details of the selected artist will be displayed -->
       <div id="artist-details"></div>
     </div>
 
-    <!-- 페이지 푸터: Artsy attribution 및 링크 포함 -->
+    <!-- Page footer: includes Artsy attribution and link -->
     <footer>
       <a href="https://www.artsy.net">
         Powered by
@@ -67,7 +67,7 @@
       </a>
     </footer>
 
-    <!-- JavaScript 파일 링크 -->
+    <!-- JavaScript file link -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>

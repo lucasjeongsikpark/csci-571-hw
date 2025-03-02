@@ -1,4 +1,4 @@
-#!/Users/jeongsikpark/Desktop/Spring2025/CS571/hw2/ArtistSearch/artsy/bin/python
+#!/Users/jeongsikpark/Desktop/Spring2025/CS571/hw2/ArtistSearch/hw2/artsy/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys

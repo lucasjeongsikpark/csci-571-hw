@@ -1,8 +1,8 @@
 // static/js/script.js
 
-// DOM이 모두 로드되면 스크립트 실행
+// Run the script when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-  // HTML 엘리먼트 참조 변수 선언
+  // Declare variables for HTML element references
   const searchIcon = document.getElementById("search-icon");
   const clearIcon = document.getElementById("clear-icon");
   const searchInput = document.getElementById("search-input");
@@ -15,36 +15,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let isFirstSearch = true;
 
-  // 클리어 아이콘 클릭 시 입력창 내용 삭제
+  // When the clear icon is clicked, clear the input field
   clearIcon.addEventListener("click", () => {
     searchInput.value = "";
   });
 
-  // 검색 아이콘 클릭 시 검색 함수 호출
+  // When the search icon is clicked, call the search function
   searchIcon.addEventListener("click", performSearch);
 
-  // 엔터 키를 누르면 검색 함수 호출
+  // Call the search function when the Enter key is pressed
   searchInput.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
       performSearch();
     }
   });
 
-  // 검색을 수행하는 함수
+  // Function to perform the search
   async function performSearch() {
     const query = searchInput.value.trim();
     if (!query) {
-      // 입력창이 비어있으면 경고 메시지 표시
+      // If the input field is empty, display a warning message
       if (!searchInput.checkValidity()) {
         searchInput.reportValidity();
         return;
       }
       return;
     }
-    // 새로운 검색 결과로 업데이트
-    // resultsDiv.innerHTML = "";
+    // Update with new search results
     artistDetailsDiv.innerHTML = "";
-    // 이전 검색 결과와 아티스트 상세 정보를 초기화
+    // Clear previous search results and artist details
     if (isFirstSearch) {
       resultsDiv.innerHTML = "";
       showLoading();
@@ -55,20 +54,20 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hide artist details div when performing a new search
     artistDetailsDiv.style.display = "none";
 
-    // 백엔드 /search 엔드포인트에 AJAX 요청
+    // Send an AJAX request to the backend /search endpoint
     fetch(`/search?q=${encodeURIComponent(query)}`)
       .then((response) => response.json())
       .then((data) => {
         hideLoading();
-        // 에러 발생 시 에러 메시지 출력
+        // Display an error message if an error occurs
         resultsDiv.innerHTML = "";
         if (data.error) {
           resultsDiv.innerHTML = `<p>${data.error}</p>`;
         } else if (data.artists.length === 0) {
-          // 검색 결과가 없으면 'No results found.' 출력
+          // If no search results, display 'No results found.'
           resultsDiv.innerHTML = `<p class="no-results">No results found.</p>`;
         } else {
-          // 검색 결과를 화면에 표시
+          // Display the search results on the screen
           displayResults(data.artists);
           isFirstSearch = false;
         }
@@ -79,17 +78,17 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // 검색 결과(아티스트 카드)를 화면에 추가하는 함수
+  // Function to add search results (artist cards) to the screen
   function displayResults(artists) {
     artists.forEach((artist) => {
-      // 카드 엘리먼트 생성
+      // Create a card element
       const card = document.createElement("div");
       card.className = "artist-card";
       card.dataset.id = artist.id;
 
-      // 아티스트 썸네일 이미지 생성
+      // Create an artist thumbnail image
       const img = document.createElement("img");
-      // 썸네일이 없거나 "missing_image"인 경우 Artsy 로고 이미지 사용
+      // If the thumbnail is missing or is "missing_image", use the Artsy logo image
       if (artist.thumbnail && !artist.thumbnail.includes("missing_image")) {
         img.src = artist.thumbnail;
       } else {
@@ -97,14 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       card.appendChild(img);
 
-      // 아티스트 이름을 표시하는 <p> 엘리먼트 생성
+      // Create a <p> element to display the artist's name
       const namePara = document.createElement("p");
       namePara.textContent = artist.name;
       card.appendChild(namePara);
 
-      // 카드 클릭 시 해당 아티스트의 상세 정보를 요청하는 이벤트 리스너 추가
+      // Add an event listener to request the selected artist's details when the card is clicked
       card.addEventListener("click", function () {
-        // 다른 카드들의 선택 상태 제거 후 현재 카드 선택 표시
+        // Remove the selected state from other cards and mark the current card as selected
         document
           .querySelectorAll(".artist-card")
           .forEach((c) => c.classList.remove("selected"));
@@ -112,21 +111,21 @@ document.addEventListener("DOMContentLoaded", function () {
         fetchArtistDetails(artist.id);
       });
 
-      // 결과 영역에 카드 추가
+      // Add the card to the results area
       resultsDiv.appendChild(card);
     });
   }
 
-  // 선택된 아티스트의 상세 정보를 가져오는 함수
+  // Function to fetch details for the selected artist
   function fetchArtistDetails(artistId) {
-    // 기존 상세 정보 초기화 및 로딩 애니메이션 표시
+    // Clear existing details and display the loading animation
     artistDetailsDiv.innerHTML = "";
     showLoading();
 
     // Show artist details div when fetching details
     artistDetailsDiv.style.display = "block";
 
-    // 백엔드 /artist 엔드포인트에 AJAX 요청
+    // Send an AJAX request to the backend /artist endpoint
     fetch(`/artist?id=${encodeURIComponent(artistId)}`)
       .then((response) => response.json())
       .then((data) => {
@@ -134,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (data.error) {
           artistDetailsDiv.innerHTML = `<p>${data.error}</p>`;
         } else {
-          // 상세 정보를 화면에 표시
+          // Display the details on the screen
           displayArtistDetails(data.artist);
         }
       })
@@ -144,9 +143,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // 아티스트 상세 정보를 화면에 표시하는 함수
+  // Function to display the artist details on the screen
   function displayArtistDetails(artist) {
-    // 아티스트 이름, 생년월일/사망년도, 국적, 그리고 전기를 표시
+    // Display the artist's name, birth/death years, nationality, and biography
     const detailsHtml = `
             <p class="artist-name">${artist.name} (${artist.birthday || ""} ${
       artist.deathday ? "- " + artist.deathday : "- "
@@ -157,12 +156,12 @@ document.addEventListener("DOMContentLoaded", function () {
     artistDetailsDiv.innerHTML = detailsHtml;
   }
 
-  // 로딩 애니메이션을 표시하는 함수
+  // Function to show the loading animation
   function showLoading() {
     loadingDiv.classList.remove("hidden");
   }
 
-  // 로딩 애니메이션을 숨기는 함수
+  // Function to hide the loading animation
   function hideLoading() {
     loadingDiv.classList.add("hidden");
   }

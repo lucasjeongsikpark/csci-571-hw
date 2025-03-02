@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/jeongsikpark/Desktop/Spring2025/CS571/hw2/ArtistSearch/artsy"
+VIRTUAL_ENV="/Users/jeongsikpark/Desktop/Spring2025/CS571/hw2/ArtistSearch/hw2/artsy"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
