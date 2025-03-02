@@ -91,6 +91,7 @@ def get_artist_details():
     - 성공 시 아티스트의 상세 정보(JSON 형식)를 반환합니다.
     """
     artist_id = request.args.get('id', '')
+    print(artist_id)
     if not artist_id:
         return jsonify({'error': 'Missing artist id'}), 400
 
