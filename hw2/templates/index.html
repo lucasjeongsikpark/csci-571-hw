@@ -1,23 +1,18 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Page title -->
     <title>Artist Search</title>
-    <!-- CSS file link -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
   </head>
   <body>
-    <!-- Page header: displays site title -->
     <header>
       <h2>Artist Search</h2>
     </header>
 
-    <!-- Page content area -->
     <div class="content">
       <!-- Search bar: includes icon and input field -->
       <div class="search-bar">
@@ -27,7 +22,7 @@
           alt="Search Icon"
           id="search-icon"
         />
-        <!-- Artist name input field; includes placeholder and required attribute -->
+        <!-- Artist name input field -->
         <input
           type="text"
           id="search-input"
@@ -42,9 +37,10 @@
           id="clear-icon"
         />
       </div>
-      <!-- Area where search results will be displayed -->
+
+      <!-- Results -->
       <div id="results"></div>
-      <!-- Loading GIF area to display loading status during AJAX request -->
+      <!-- Loading GIF area to display LOADING status during AJAX request -->
       <div id="loading" class="hidden">
         <img
           src="{{ url_for('static', filename='images/loading.gif') }}"

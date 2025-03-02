@@ -1,8 +1,4 @@
-// static/js/script.js
-
-// Run the script when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-  // Declare variables for HTML element references
   const searchIcon = document.getElementById("search-icon");
   const clearIcon = document.getElementById("clear-icon");
   const searchInput = document.getElementById("search-input");
@@ -15,26 +11,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let isFirstSearch = true;
 
-  // When the clear icon is clicked, clear the input field
+  // CLEAR ICON
   clearIcon.addEventListener("click", () => {
     searchInput.value = "";
   });
 
-  // When the search icon is clicked, call the search function
+  // SEARCH ICON
   searchIcon.addEventListener("click", performSearch);
 
-  // Call the search function when the Enter key is pressed
+  // SEARCH ENTER
   searchInput.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
       performSearch();
     }
   });
 
-  // Function to perform the search
+  // SEARCH
   async function performSearch() {
     const query = searchInput.value.trim();
     if (!query) {
-      // If the input field is empty, display a warning message
+      // Input Empty Warning
       if (!searchInput.checkValidity()) {
         searchInput.reportValidity();
         return;
@@ -43,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // Update with new search results
     artistDetailsDiv.innerHTML = "";
-    // Clear previous search results and artist details
+    // Show the Loading only for the first search. For subsequent searches, show the loading icon in the results area.
     if (isFirstSearch) {
       resultsDiv.innerHTML = "";
       showLoading();
@@ -59,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         hideLoading();
-        // Display an error message if an error occurs
+        // For an update, clear the results div and display the new search results
         resultsDiv.innerHTML = "";
         if (data.error) {
           resultsDiv.innerHTML = `<p>${data.error}</p>`;
@@ -67,9 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
           // If no search results, display 'No results found.'
           resultsDiv.innerHTML = `<p class="no-results">No results found.</p>`;
         } else {
-          // Display the search results on the screen
+          // Success. Display the search results on the screen
           displayResults(data.artists);
-          isFirstSearch = false;
+          isFirstSearch = false; // Set to false after the first search
         }
       })
       .catch((error) => {
@@ -92,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (artist.thumbnail && !artist.thumbnail.includes("missing_image")) {
         img.src = artist.thumbnail;
       } else {
+        // No thumbnail image available
         img.src = "/static/images/artsy_logo.svg";
       }
       card.appendChild(img);

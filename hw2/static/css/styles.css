@@ -1,13 +1,10 @@
-/* static/css/styles.css */
-
-/* Basic reset: remove margin and padding from all elements and set box sizing */
+/* Reset. remove margin and padding from all elements. Set box sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Overall body style */
 body {
     font-family: Arial, sans-serif;
     background-color: white;
@@ -16,7 +13,6 @@ body {
     min-height: 100vh;
 }
 
-/* Header and footer styles: set background and text colors */
 header {
     background-color: #ccc;
     color: black;
@@ -34,23 +30,22 @@ footer {
     width: 100%;
 }
 
-/* Footer link style: white text with no underline */
 footer a {
     color: white;
     text-decoration: none;
 }
 
-/* Padding for the content area */
+/* Content Padding. To avoid overlap with the footer */
 .content {
     padding: 50px;
     flex: 1;
 }
 
-/* Search bar style */
+/* Search Bar */
 .search-bar {
     display: flex;
     align-items: center;
-    border: 2px solid #ccc;
+    border: 2px solid #ccc; /* default ccc, hover orange */
     border-radius: 15px; /* Set rounded corners */
     padding: 5px;
     width: 100%;
@@ -64,7 +59,7 @@ footer a {
     border-color: orange;
 }
 
-/* Style for icons within the search bar: size, opacity, cursor, and hover effect */
+/* Search Bar IMG (search icon, clear icon) */
 .search-bar img {
     width: 24px;
     height: 24px;
@@ -73,11 +68,16 @@ footer a {
     transition: opacity 0.3s;
 }
 
+#clear-icon {
+    width: 15px;
+    height: 15px;
+}
+
 .search-bar img:hover {
     opacity: 1;
 }
 
-/* Search input field style: expand to fill available space */
+/* Search Bar - input */
 .search-bar input {
     flex: 1;
     border: none;
@@ -86,7 +86,7 @@ footer a {
     font-size: 16px;
 }
 
-/* Loading GIF area style */
+/* LOADING GIF */
 #loading {
     text-align: center;
     margin: 20px 0;
@@ -97,7 +97,7 @@ footer a {
     display: none;
 }
 
-/* Search results area: display result cards in a horizontal scroll layout */
+/* RESULTS: card list. Horizontal */
 #results {
     display: flex;
     overflow-x: scroll;
@@ -105,9 +105,9 @@ footer a {
     padding: 10px;
 }
 
-/* Individual artist card style */
+/* Individual Card */
 .artist-card {
-    background-color: #205375;
+    background-color: #205375; /* Dark blue when hovered */
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -140,7 +140,7 @@ footer a {
     object-fit: cover;
 }
 
-/* Artist details area style */
+/* Artist details */
 #artist-details {
     margin-top: 20px;
     background-color: white;
@@ -151,11 +151,13 @@ footer a {
     margin-right: auto;
 }
 
+/* Icon in the footer */
 footer img {
   width: 15px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
 }
 
+/* No results message */
 .no-results {
     color: black;
     background-color: #ccc;
@@ -166,17 +168,15 @@ footer img {
     margin: 0 auto;
   }
 
+/* Artist details. First line */
 .artist-name{
     font-size: 30px;
     text-align: center;
 }
 
+/* Artist details. Second line */
 .artist-nationality{
     font-size: 25px;
     text-align: center;
 }
 
-#clear-icon {
-    width: 15px;
-    height: 15px;
-}
