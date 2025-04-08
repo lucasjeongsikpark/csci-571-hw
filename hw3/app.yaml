@@ -1,0 +1,4 @@
+# app.yaml
+# Specifies the Python 3.11 runtime configuration and the entrypoint for execution on GCP.
+runtime: python311
+entrypoint: gunicorn -b :$PORT app:app

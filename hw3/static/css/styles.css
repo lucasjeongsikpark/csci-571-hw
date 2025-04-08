@@ -1,0 +1,182 @@
+/* Reset. remove margin and padding from all elements. Set box sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #ccc;
+    color: black;
+    padding: 20px;
+    text-align: left;
+}
+
+footer {
+    background-color: #205375;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Content Padding. To avoid overlap with the footer */
+.content {
+    padding: 50px;
+    flex: 1;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc; /* default ccc, hover orange */
+    border-radius: 15px; /* Set rounded corners */
+    padding: 5px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    transition: border-color 0.3s;
+}
+
+/* Change border color to orange when the input field is focused */
+.search-bar:focus-within {
+    border-color: orange;
+}
+
+/* Search Bar IMG (search icon, clear icon) */
+.search-bar img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+#clear-icon {
+    width: 15px;
+    height: 15px;
+}
+
+.search-bar img:hover {
+    opacity: 1;
+}
+
+/* Search Bar - input */
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+/* LOADING GIF */
+#loading {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Hide element when the hidden class is applied */
+.hidden {
+    display: none;
+}
+
+/* RESULTS: card list. Horizontal */
+#results {
+    display: flex;
+    overflow-x: scroll;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* Individual Card */
+.artist-card {
+    background-color: #205375; /* Dark blue when hovered */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+    height: 350px;
+    font-size: 25px;
+    flex-shrink: 0;
+    cursor: pointer;
+    overflow-y: visible;
+    transition: background-color 0.3s;
+}
+
+/* Change background color on card hover */
+.artist-card:hover {
+    background-color: #112B3C;
+}
+
+/* Maintain background color for the selected card */
+.artist-card.selected {
+    background-color: #112B3C;
+}
+
+/* Style for images inside cards: circular, with border and specified size */
+.artist-card img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 5px solid white;
+    object-fit: cover;
+}
+
+/* Artist details */
+#artist-details {
+    margin-top: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Icon in the footer */
+footer img {
+  width: 15px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* No results message */
+.no-results {
+    color: black;
+    background-color: #ccc;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    width: 35%;
+    margin: 0 auto;
+  }
+
+/* Artist details. First line */
+.artist-name{
+    font-size: 30px;
+    text-align: center;
+}
+
+/* Artist details. Second line */
+.artist-nationality{
+    font-size: 25px;
+    text-align: center;
+}
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Artist Search</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <h2>Artist Search</h2>
+    </header>
+
+    <div class="content">
+      <!-- Search bar: includes icon and input field -->
+      <div class="search-bar">
+        <!-- Search icon -->
+        <img
+          src="{{ url_for('static', filename='images/search_icon.png') }}"
+          alt="Search Icon"
+          id="search-icon"
+        />
+        <!-- Artist name input field -->
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Please enter an artist name."
+          autocomplete="off"
+          required
+        />
+        <!-- Clear icon -->
+        <img
+          src="{{ url_for('static', filename='images/clear_icon.png') }}"
+          alt="Clear Icon"
+          id="clear-icon"
+        />
+      </div>
+
+      <!-- Results -->
+      <div id="results"></div>
+      <!-- Loading GIF area to display LOADING status during AJAX request -->
+      <div id="loading" class="hidden">
+        <img
+          src="{{ url_for('static', filename='images/loading.gif') }}"
+          alt="Loading"
+        />
+      </div>
+      <!-- Area where details of the selected artist will be displayed -->
+      <div id="artist-details"></div>
+    </div>
+
+    <!-- Page footer: includes Artsy attribution and link -->
+    <footer>
+      <a href="https://www.artsy.net">
+        Powered by
+        <img
+          src="{{ url_for('static', filename='images/artsy_logo.svg') }}"
+          alt="Artsy Logo"
+        />
+        Artsy.
+      </a>
+    </footer>
+
+    <!-- JavaScript file link -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
