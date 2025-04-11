@@ -1,0 +1,8 @@
+/* src/app/components/auth/register.component.css */
+input.ng-invalid.ng-touched {
+  border: 1px solid #dc3545; /* Bootstrap danger color */
+}
+
+.card {
+  border-radius: 8px;
+}

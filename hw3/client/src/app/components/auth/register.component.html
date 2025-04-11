@@ -1,0 +1,74 @@
+<!-- src/app/components/auth/register.component.html -->
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+  <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+    <h3 class="mb-4 text-center">Register</h3>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Fullname -->
+      <div class="mb-3">
+        <label class="form-label">Fullname</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="John Doe"
+          formControlName="fullname"
+          required
+        />
+        <div *ngIf="fullname?.invalid && (fullname?.dirty || fullname?.touched)" class="text-danger mt-1">
+          <small *ngIf="fullname?.errors?.['required']">Fullname is required.</small>
+        </div>
+      </div>
+      
+      <!-- Email address -->
+      <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter email"
+          formControlName="email"
+          required
+        />
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger mt-1">
+          <small *ngIf="email?.errors?.['required']">Email is required.</small>
+          <small *ngIf="email?.errors?.['email']">Email must be valid.</small>
+        </div>
+      </div>
+      
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          formControlName="password"
+          required
+        />
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger mt-1">
+          <small *ngIf="password?.errors?.['required']">Password is required.</small>
+        </div>
+      </div>
+      
+      <!-- 백엔드 오류 메시지 -->
+      <div *ngIf="errorMsg" class="alert alert-danger">
+        {{ errorMsg }}
+      </div>
+      
+      <!-- Register 버튼 -->
+      <button 
+        type="submit" 
+        class="btn btn-primary w-100"
+        [disabled]="registerForm.invalid">
+        Register
+      </button>
+    </form>
+    
+    <!-- 이미 계정 있음: 로그인 페이지로 이동 -->
+    <div class="text-center mt-3">
+      <small>
+        Already have an account? 
+        <a routerLink="/login">Login</a>
+      </small>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+/* 헤더 브랜드 스타일 */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* 활성화된 nav 링크는 파란색 배경에 흰색 텍스트 */
+.nav-link.active {
+  background-color: #0d6efd; /* Bootstrap primary color */
+  color: #fff !important;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+/* 드롭다운 메뉴 (Bootstrap 5는 .show 클래스로 표시) */
+.dropdown-menu.show {
+  display: block;
+}
+
+/* 프로필 영역의 드롭다운 토글 스타일 */
+.nav-link.dropdown-toggle {
+  cursor: pointer;
+}
+
+/* 추가적인 드롭다운 커스텀 (원하는 경우 추가) */

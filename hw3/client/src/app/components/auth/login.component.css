@@ -1,0 +1,6 @@
+/* 간단한 스타일만 사용. 카드/폼 레이아웃 등은 Bootstrap 클래스가 처리 */
+
+.card {
+    border-radius: 8px;
+  }
+  

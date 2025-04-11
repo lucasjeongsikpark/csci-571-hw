@@ -1,0 +1,108 @@
+<div class="artist-details-container">
+  <!-- 로딩 중이면 스피너만 표시 (탭 콘텐츠는 숨김) -->
+  <div *ngIf="loading" class="spinner-area">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- 로딩이 끝나면 탭 및 탭 콘텐츠 표시 -->
+  <div *ngIf="!loading">
+    <!-- 탭 버튼 영역: 두 버튼이 50%씩 차지 -->
+    <div class="d-flex tab-buttons mb-3">
+      <button 
+        class="btn flex-fill"
+        [ngClass]="currentTab === 'info' ? 'btn-primary active' : 'btn-outline-primary'"
+        (click)="switchTab('info')">
+        Artist Info
+      </button>
+      <button 
+        class="btn flex-fill"
+        [ngClass]="currentTab === 'artworks' ? 'btn-primary active' : 'btn-outline-primary'"
+        (click)="switchTab('artworks')">
+        Artworks
+      </button>
+    </div>
+
+    <!-- Artist Info 탭 -->
+    <div *ngIf="currentTab === 'info'">
+      <h2 class="artist-name">{{ artist.name }}</h2>
+      <p class="artist-sub">
+        <span *ngIf="artist.nationality">{{ artist.nationality }}</span>
+        <span *ngIf="artist.birthday || artist.deathday">
+          , {{ artist.birthday || '' }} – {{ artist.deathday || '' }}
+        </span>
+      </p>
+      <p class="artist-bio">
+        {{ artist.biography || 'No biography available.' }}
+      </p>
+    </div>
+
+
+    <!-- Artworks 탭 -->
+    <div *ngIf="currentTab === 'artworks'">
+      <div *ngIf="artworks && artworks.length > 0; else noArtworks">
+        <div class="row">
+          <div class="col-md-3 mb-3" *ngFor="let artwork of artworks">
+            <div class="card artwork-card" (click)="$event.stopPropagation()">
+              <img 
+                [src]="artwork.thumbnail || 'assets/images/artsy_logo.svg'" 
+                class="card-img-top" 
+                alt="{{ artwork.title }}">
+              <div class="card-body p-2">
+                <h6 class="card-title">{{ artwork.title }}</h6>
+                <p class="card-text">{{ artwork.date }}</p>
+                <!-- Categories 버튼: 클릭 시 이벤트 버블링 방지 -->
+                <button 
+                  class="btn btn-sm btn-outline-primary" 
+                  (click)="showCategories($event, artwork.id)">
+                  Categories
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noArtworks>
+        <p>No artworks.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- Categories Modal (Bootstrap 모달) -->
+<div class="modal fade" [class.show]="modalVisible" [style.display]="modalVisible ? 'block' : 'none'" tabindex="-1" role="dialog" aria-labelledby="categoriesModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- 모달 타이틀: 여기서는 간단히 'Artwork Categories'라고 표시 (추가로 선택한 artwork의 정보를 표시하려면 artwork 데이터를 추가로 전달 필요) -->
+        <h5 class="modal-title" id="categoriesModalLabel">Artwork Categories</h5>
+        <button type="button" class="btn-close" (click)="closeCategoriesModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="categoriesLoading" class="text-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <div *ngIf="!categoriesLoading">
+          <div *ngIf="categories && categories.length > 0; else noCategories">
+            <div class="row">
+              <div class="col-md-4 mb-3" *ngFor="let category of categories">
+                <div class="card">
+                  <img [src]="category._links.thumbnail.href" class="card-img-top" alt="{{ category.name }}">
+                  <div class="card-body p-2">
+                    <h6 class="card-title">{{ category.name }}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-template #noCategories>
+            <p>No categories.</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

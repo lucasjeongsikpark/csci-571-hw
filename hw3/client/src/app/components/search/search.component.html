@@ -1,0 +1,75 @@
+<div class="container my-4">
+  <!-- 검색 입력 필드 및 버튼 (Bootstrap input-group) -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Please enter an artist name."
+          [(ngModel)]="query"
+          (keyup.enter)="performSearch()"
+          required
+        />
+        <button 
+          class="btn btn-primary" 
+          type="button" 
+          [disabled]="!query || query.trim() === '' || loading"
+          (click)="performSearch()">
+          Search
+          <span 
+            *ngIf="loading" 
+            class="spinner-border spinner-border-sm ms-2 text-light" 
+            role="status" 
+            aria-hidden="true">
+          </span>
+        </button>
+        <button 
+          class="btn btn-secondary" 
+          type="button" 
+          [disabled]="!query || query.trim() === '' || loading"
+          (click)="clearSearch()">
+          Clear
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 검색 결과가 없으면 "No results found." 메시지 (검색을 수행한 경우에만) -->
+  <div class="row justify-content-center" *ngIf="searchPerformed && artists.length === 0 && !loading">
+    <div class="col-md-6">
+      <p class="no-results">No results found.</p>
+    </div>
+  </div>
+  
+  <!-- 검색 결과 카드 목록 (결과가 있을 경우) -->
+  <div class="row mt-4" *ngIf="artists.length > 0 && !loading">
+    <div class="col-12 d-flex overflow-auto" id="results">
+      <div
+        *ngFor="let artist of artists"
+        class="artist-card"
+        [ngClass]="{'selected': selectedArtist?.id === artist.id}"
+        (click)="selectArtist(artist.id)">
+        <span 
+          *ngIf="isLoggedIn" 
+          class="artist-favorite"
+          (click)="toggleFavorite($event, artist)">
+          {{ artist.isFavorite ? '★' : '☆' }}
+        </span>
+        <img
+          [src]="artist.thumbnail && !artist.thumbnail.includes('missing_image') ? artist.thumbnail : 'assets/images/artsy_logo.svg'"
+          alt="{{ artist.name }}" />
+        <div class="artist-info">
+          <p>{{ artist.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 선택된 아티스트 상세 -->
+  <div class="row justify-content-center mt-4" *ngIf="selectedArtist && !loading">
+    <div class="col-md-8">
+      <app-artist-details [artist]="selectedArtist"></app-artist-details>
+    </div>
+  </div>
+</div>

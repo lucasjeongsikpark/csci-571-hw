@@ -1,0 +1,19 @@
+<div class="container mt-4">
+    <h2>Favorite Artists</h2>
+    <div *ngIf="loading" class="spinner-border"></div>
+    <div *ngIf="!loading && favorites.length === 0" class="alert alert-warning">
+      No favorite artists.
+    </div>
+    <div class="row" *ngIf="favorites.length > 0">
+      <div class="col-md-4" *ngFor="let fav of favorites">
+        <div class="card mb-3" style="cursor:pointer">
+          <div class="card-body">
+            <h5 class="card-title">Artist ID: {{ fav.artistId }}</h5>
+            <p class="card-text">Added: {{ fav.addedAt | date:'short' }}</p>
+            <button class="btn btn-danger" (click)="removeFavorite(fav.artistId); $event.stopPropagation();">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

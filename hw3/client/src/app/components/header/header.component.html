@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- 왼쪽 브랜드: 항상 /search 라우트로 연결 -->
+    <a class="navbar-brand" routerLink="/search">Artist Search</a>
+
+    <!-- 모바일 토글 버튼 -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- 오른쪽 메뉴 (로그인 여부에 따라 다름) -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- 항상 보이는 Search 탭 -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/search"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+            Search
+          </a>
+        </li>
+
+        <!-- 비로그인 상태 (Login, Register) -->
+        <ng-container *ngIf="!isLoggedIn; else loggedInLinks">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">
+              Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">
+              Register
+            </a>
+          </li>
+        </ng-container>
+
+        <!-- 로그인 상태 (Favorites와 프로필 드롭다운) -->
+        <ng-template #loggedInLinks>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/favorites" routerLinkActive="active">
+              Favorites
+            </a>
+          </li>
+          <li class="nav-item dropdown" [class.show]="dropdownOpen">
+            <!-- 프로필 영역: 이미지 + 이름 + 드롭다운 아이콘 -->
+            <a
+              class="nav-link dropdown-toggle d-flex align-items-center"
+              href="#"
+              id="profileDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="{{ dropdownOpen ? 'true' : 'false' }}"
+              (click)="toggleDropdown($event)">
+              <img
+                [src]="user?.profileImageUrl || 'assets/images/artsy_logo.svg'"
+                alt="Profile"
+                width="30"
+                height="30"
+                class="rounded-circle me-1">
+              {{ user?.fullname || 'Profile' }}
+            </a>
+            <!-- 드롭다운 메뉴 -->
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              [class.show]="dropdownOpen"
+              aria-labelledby="profileDropdown">
+              <li>
+                <button class="dropdown-item" (click)="logout()">Logout</button>
+              </li>
+              <li>
+                <button class="dropdown-item text-danger" (click)="deleteAccount()">Delete Account</button>
+              </li>
+            </ul>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>

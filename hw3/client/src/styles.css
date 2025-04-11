@@ -1,0 +1,257 @@
+/* ======================================================
+   Global Reset 및 기본 설정 (HW2 스타일 기반)
+======================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content {
+    padding: 50px;
+    flex: 1;
+  }
+  
+  
+  /* ======================================================
+     Footer (HW2 및 공통)
+  ======================================================== */
+  footer {
+    background-color: #112B3C; /* 어두운 파랑 */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  footer a {
+    color: white;
+    text-decoration: none;
+  }
+  footer img {
+    width: 15px;
+    height: auto;
+  }
+  
+  
+  /* ======================================================
+     Header (공통: header.component.css)
+  ======================================================== */
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .nav-link.active {
+    background-color: #0d6efd; /* Bootstrap primary */
+    color: #fff !important;
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  .nav-link.dropdown-toggle {
+    cursor: pointer;
+  }
+  
+  
+  /* ======================================================
+     Notifications (notifications.component.css)
+  ======================================================== */
+  .notification-container {
+    z-index: 1050;
+  }
+  
+  
+  /* ======================================================
+     Artist Details (artist-details.component.css)
+  ======================================================== */
+  .artist-details-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #fff;  /* 항상 흰색 보더 */
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .spinner-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+  
+  .artist-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .artist-sub {
+    text-align: center;
+    /* font-style: italic; */
+    margin-bottom: 1rem;
+  }
+  
+  .artist-bio {
+    line-height: 1.6;
+    text-align: justify;
+    white-space: pre-line;
+  }
+  
+  /* 탭 버튼 영역 */
+  .tab-buttons {
+    display: flex;
+    width: 100%;
+    gap: 0;
+    border-radius: 10px; /* 필요시 수정 */
+  }
+  
+  .tab-buttons .btn {
+    flex: 1;
+    margin: 0;
+    padding: 0.75rem;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    border: 2px solid #fff; /* 항상 흰색 외곽선 */
+    border-radius: 0;       /* 원하는 경우 border-radius: 5px; 등으로 조정 가능 */
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .tab-buttons .btn.active,
+  .tab-buttons .btn.btn-primary {
+    background-color: #205375;
+    color: #fff;
+  }
+  
+  .tab-buttons .btn.btn-outline-primary {
+    background-color: transparent;
+    color: #205375;
+  }
+  
+  
+  /* Artwork 카드 (Artist Details - Artworks 탭 내) */
+  .artwork-card {
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  .artwork-card:hover {
+    transform: scale(1.02);
+  }
+  .artwork-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  
+  /* ======================================================
+     Login & Register (login.component.css / register.component.css)
+     (Bootstrap 카드 & 폼 기본 스타일 활용)
+  ======================================================== */
+  .card {
+    border-radius: 8px;
+  }
+  
+  input.ng-invalid.ng-touched {
+    border: 1px solid #dc3545; /* Bootstrap danger color */
+  }
+  
+  
+  /* ======================================================
+     Favorites (favorites.component.css)
+  ======================================================== */
+  /* (추가 스타일 필요 시 여기에 작성) */
+  
+  
+  /* ======================================================
+     Search Component (search.component.css)
+  ======================================================== */
+  /* 결과 영역 (검색 결과 카드 목록) */
+  #results {
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  /* Artist Card 스타일 (Search 결과) */
+  .artist-card {
+    background-color: #205375;
+    color: white;
+    width: 250px;
+    height: 350px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .artist-card:hover {
+    background-color: #205375;
+  }
+  .artist-card.selected {
+    background-color: #205375;
+  }
+  /* 카드 내 이미지: 상단 85% 차지, 사각형 */
+  .artist-card img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  /* 카드 하단 아티스트 이름 영역 (15%) */
+  .artist-info {
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: inherit;
+  }
+  .artist-info p {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+  }
+  /* 즐겨찾기 아이콘 */
+  .artist-favorite {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.5rem;
+    color: gold;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  /* 버튼 disabled */
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* ======================================================
+     기타 (기존 HW2 일부 주석 처리된 부분은 유지하지 않음)
+  ======================================================== */
+  
+  /* 필요 시 추가 글로벌 커스터마이징 CSS 추가 */
+  

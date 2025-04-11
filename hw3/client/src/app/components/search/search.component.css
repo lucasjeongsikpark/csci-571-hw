@@ -1,0 +1,86 @@
+/* 결과 영역: 카드 목록 간격 */
+#results {
+  gap: 10px;
+  padding: 10px;
+}
+
+/* 기본 카드 스타일 */
+.artist-card {
+  background-color: #112B3C;
+  color: white;
+  width: 250px;
+  height: 350px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+/* hover 시 선택되지 않은 카드만 변경 */
+.artist-card:hover:not(.selected) {
+  background-color: #0d6efd;
+}
+
+/* 선택된 카드: 항상 0d6efd 색상 유지 */
+.artist-card.selected,
+.artist-card.selected:hover {
+  background-color: #0d6efd !important;
+}
+
+/* 카드 내 이미지 스타일 */
+.artist-card img {
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* 하단 아티스트 이름 영역 */
+.artist-info {
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+}
+
+.artist-info p {
+  margin: 0;
+  color: white;
+  font-weight: bold;
+}
+
+/* 즐겨찾기 아이콘 */
+.artist-favorite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.5rem;
+  color: gold;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* "No results found." 메시지 스타일 */
+.no-results {
+  color: #a8071a;  /* 진한 빨강 */
+  background-color: #ffd8d8; /* 연한 빨강 배경 */
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  margin: 20px auto;
+}
+
+/* 버튼 disabled 상태 */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

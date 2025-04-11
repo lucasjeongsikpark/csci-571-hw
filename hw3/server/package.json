@@ -1,0 +1,18 @@
+{
+    "name": "hw3-server",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "axios": "^0.27.2",
+        "bcrypt": "^5.0.1",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "jsonwebtoken": "^9.0.0",
+        "mongoose": "^7.0.1"
+    }
+}
